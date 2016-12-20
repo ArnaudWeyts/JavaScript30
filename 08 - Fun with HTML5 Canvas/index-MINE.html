@@ -15,6 +15,7 @@
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
   ctx.lineWidth = 50;
+  ctx.global
 
   let isDrawing = false;
   let lastX = 0;
@@ -30,8 +31,10 @@
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY];
+
     hue++;
     if(hue >= 360) hue = 0;
+
     if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) direction = !direction;
     direction ? ctx.lineWidth++ : ctx.lineWidth--;
   }
