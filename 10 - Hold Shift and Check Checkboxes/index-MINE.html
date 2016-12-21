@@ -6,7 +6,6 @@
 </head>
 <body>
   <style>
-
     html {
       font-family: sans-serif;
       background:#ffc600;
@@ -55,8 +54,6 @@
       text-align: center;
       font-size: 15px;
     }
-
-
   </style>
    <!--
    The following is a common layout you would see in an email client.
@@ -102,8 +99,23 @@
       <p>Don't forget to tweet your result!</p>
     </div>
   </div>
+  <script>
+    const checkboxes = document.querySelectorAll('.item input[type="checkbox"]');
 
-<script>
-</script>
+    let lastChecked;
+
+    function handleCheck(e) {
+      let inBetween = false;
+      if (e.shiftKey && this.checked) {
+        checkboxes.forEach(checkbox => {
+          if (checkbox === this || checkbox === lastChecked) inBetween = !inBetween;
+          if (inBetween) checkbox.checked = true;
+        });
+      }
+      lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+  </script>
 </body>
 </html>
